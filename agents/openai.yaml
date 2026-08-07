@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rock Oracle"
+  short_description: "Map a moment to one rock song."
+  default_prompt: "Use $rock-oracle to give this moment one rock song."
