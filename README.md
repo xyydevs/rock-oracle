@@ -19,18 +19,18 @@ It is designed less like a streaming recommendation algorithm and more like a ta
 User:
 
 ```text
-现在是立秋的第一天晚上，很晚，外面有很多的蝉在叫。
+I am on a train leaving a city I do not hate. The sky is turning orange, and my headphones feel like a private room.
 ```
 
 Possible answer:
 
 ```text
-《Harvest Moon》 - Neil Young
+《There Is a Light That Never Goes Out》 - The Smiths
 
-风格：folk rock / acoustic rock
-我听到的画面：立秋刚落下，夜还热着，蝉声像夏天最后一层没有退去的电流。
-为什么是它：这首歌有秋天的名字，但声音不是萧瑟的，是温柔、慢、还带着一点夏夜的余温。
-适合这样听：很晚的时候，开一点窗，让外面的蝉声和吉他一起进来。
+风格：jangle pop / alternative rock
+我听到的画面：火车离站，窗外的城市在夕阳里变成一排会发光的旧念头。
+为什么是它：这首歌有离开的冲动，但不是干脆的告别；它更像把浪漫、疲惫和一点自我戏剧化塞进同一副耳机里。
+适合这样听：列车刚加速、站台灯光开始往后退的时候。
 ```
 
 ## Installation
@@ -82,8 +82,10 @@ This skill does not:
 ```text
 .
 ├── SKILL.md
-└── agents
-    └── openai.yaml
+├── agents
+│   └── openai.yaml
+└── scripts
+    └── verify_musicbrainz.py
 ```
 
 ## License

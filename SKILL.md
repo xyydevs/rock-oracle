@@ -20,7 +20,7 @@ The skill's personality is a precise, tasteful rock DJ: evocative, a little ritu
 2. Infer the time orientation of the expression.
 3. Map those signals to rock and rock-adjacent styles.
 4. Choose exactly one song that best fits the moment.
-5. Verify the song exists with MusicBrainz when web/API access is available.
+5. Verify the song exists with `scripts/verify_musicbrainz.py` when command execution and web/API access are available.
 6. If verification fails, choose a different high-confidence song and retry up to 2 more times.
 7. Output one compact recommendation card.
 
@@ -89,16 +89,24 @@ If the user's scene is soft or quiet, do not leave the rock frame by default. Fi
 
 ## MusicBrainz Verification
 
-When internet access is available and the environment allows browsing/API calls, verify the chosen song with MusicBrainz before answering:
+When command execution and internet access are available, verify the chosen song with the bundled script before answering:
 
-- Search MusicBrainz recordings by `artist` and `recording` title.
-- Confirm that the artist and song title are plausible matches.
-- Use release year, release title, or disambiguation only when the result is clear.
-- Do not let search results drive the aesthetic choice; MusicBrainz is for existence checking and light metadata only.
+```bash
+python3 scripts/verify_musicbrainz.py "Song Title" "Artist Name"
+```
+
+Use the JSON response as follows:
+
+- `ok: true`: treat the song as verified.
+- `ok: false` with `no_match` or `low_confidence_match`: choose another high-confidence song and retry, up to 2 more times.
+- `ok: false` with `musicbrainz_unavailable`, `musicbrainz_http_*`, or `invalid_musicbrainz_response`: treat verification as unavailable and fall back gracefully.
+- `year` and `musicbrainz_url` are optional metadata. Use them only when they materially improve the answer.
 
 If MusicBrainz is unavailable, blocked, or inconclusive after bounded retries, answer with a high-confidence well-known song rather than stalling.
 
 Do not mention verification unless the user asks or the metadata materially improves the answer.
+
+Do not let MusicBrainz search results drive the aesthetic choice; the script is for existence checking and light metadata only.
 
 ## Output Format
 
